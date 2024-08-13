@@ -11,7 +11,7 @@
         />
         {{ internalValue ? internalValue.countryName : 'Choose a country' }}
       </div>
-      <ul v-if="dropdownOpen" class="dropdown-list">
+      <ul v-show="dropdownOpen" class="dropdown-list">
         <li
           v-for="country in countries"
           :key="country.value"
@@ -73,7 +73,7 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style scoped lang="scss">
 .dropdown {
   position: relative;
   display: inline-block;
@@ -95,8 +95,9 @@ export default defineComponent({
   right: 0;
   border: 1px solid black;
   background-color: gray;
-  max-height: 200px;
-  min-width: 150px;
+  max-height: 500px;
+  width: 100%;
+  min-width: 170px;
   overflow-y: auto;
   z-index: 1000;
   padding-left: 0px;

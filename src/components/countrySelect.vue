@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <section class="contries-section">
     <h2>Select Your Country</h2>
     <CountrySelect v-model="countryselectnow" />
     <p>Selected Country: {{ countryselectnow?.countryName }}</p>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
@@ -23,4 +23,10 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.contries-section {
+  height: 100%;
+  width: 100%;
+  padding: 24px;
+}
+</style>
