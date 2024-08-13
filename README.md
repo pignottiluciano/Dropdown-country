@@ -1,19 +1,23 @@
-# dropdown-country
+# Project Name
 
-This template should help get you started developing with Vue 3 in Vite.
+## Description
 
-## Recommended IDE Setup
+This project is a Vue.js application built with TypeScript. The application features a customizable country selection dropdown, allowing users to choose a country from a list, including the country’s name, phone code, and flag.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
 
-## Type Support for `.vue` Imports in TS
+- Customizable country selection dropdown.
+- Displays country names and flags.
+- Built with Vue.js and TypeScript.
+- Fully reusable component for use in other parts of the application.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Installation
 
-## Customize configuration
+To install and run this project locally:
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/pignottiluciano/dropdown-country.git
 ## Project Setup
 
 ```sh
