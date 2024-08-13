@@ -1,4 +1,5 @@
-# Project Name
+
+# Dropdown Country
 
 ## Description
 
@@ -18,26 +19,45 @@ To install and run this project locally:
 1. Clone the repository:
    ```bash
    git clone https://github.com/pignottiluciano/dropdown-country.git
-## Project Setup
+   ```
 
-```sh
-npm install
-```
+2. Navigate to the project directory:
+   ```bash
+   cd dropdown-country
+   ```
 
-### Compile and Hot-Reload for Development
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-```sh
-npm run dev
-```
+4. Run the development server:
+   ```bash
+   npm run serve
+   ```
 
-### Type-Check, Compile and Minify for Production
+## Usage
 
-```sh
-npm run build
-```
+Include the `CountrySelect` component in any Vue component to enable the country selection feature.
 
-### Lint with [ESLint](https://eslint.org/)
+```vue
+<template>
+  <div>
+    <CountrySelect v-model="selectedCountry" />
+  </div>
+</template>
 
-```sh
-npm run lint
+<script>
+import { defineComponent, ref } from 'vue';
+import CountrySelect from './components/CountrySelect.vue';
+
+export default defineComponent({
+  components: { CountrySelect },
+  setup() {
+    const selectedCountry = ref(null);
+
+    return { selectedCountry };
+  },
+});
+</script>
 ```
