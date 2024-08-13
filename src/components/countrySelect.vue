@@ -9,12 +9,12 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import CountrySelect from './dropdownCountries.vue'
-import { ContriesType } from '../lib/countriesCode'
+import type { ContryType } from '../lib/countriesCode'
 
 export default defineComponent({
   components: { CountrySelect },
   setup() {
-    const countryselectnow = ref<ContriesType | null>(null)
+    const countryselectnow = ref<ContryType | null>(null)
 
     return {
       countryselectnow

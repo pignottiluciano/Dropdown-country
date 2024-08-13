@@ -12,7 +12,11 @@
         {{ internalValue ? internalValue.countryName : 'Choose a country' }}
       </div>
       <ul v-if="dropdownOpen" class="dropdown-list">
-        <li v-for="country in countries" :key="country.value" @click="selectCountry(country, $event)">
+        <li
+          v-for="country in countries"
+          :key="country.value"
+          @click="selectCountry(country, $event)"
+        >
           <img :src="country.image" :alt="country.countryName" class="flag-icon" />
           {{ country.countryName }}
         </li>
@@ -22,33 +26,33 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, PropType, watch } from 'vue'
-import { countriesCode, ContriesType } from '../lib/countriesCode'
+import { defineComponent, ref, type PropType, watch } from 'vue'
+import { countriesCode, type ContryType } from '../lib/countriesCode'
 
 export default defineComponent({
   name: 'CountrySelect',
   props: {
     modelValue: {
-      type: Object as PropType<ContriesType | null>,
+      type: Object as PropType<ContryType | null>,
       default: null
     }
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const countries = ref<Array<ContriesType>>(countriesCode())
-    const internalValue = ref<ContriesType | null>(props.modelValue)
+    const countries = ref<Array<ContryType>>(countriesCode())
+    const internalValue = ref<ContryType | null>(props.modelValue)
     const dropdownOpen = ref<boolean>(false)
 
     const toggleDropdown = () => {
       dropdownOpen.value = !dropdownOpen.value
     }
 
-    const selectCountry = (country: ContriesType, event: MouseEvent) => {
-      event.stopPropagation();
-      internalValue.value = country;
-      dropdownOpen.value = false;
-      emit('update:modelValue', country);
-    };
+    const selectCountry = (country: ContryType, event: MouseEvent) => {
+      event.stopPropagation()
+      internalValue.value = country
+      dropdownOpen.value = false
+      emit('update:modelValue', country)
+    }
 
     watch(
       () => props.modelValue,
