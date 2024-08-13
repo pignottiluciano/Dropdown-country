@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import countrySelect from './components/countrySelect.vue'
+import PhoneCodeSelect from './components/PhoneCodeSelect.vue'
 </script>
 
 <template>
   <main>
     <countrySelect></countrySelect>
+    <PhoneCodeSelect></PhoneCodeSelect>
   </main>
 </template>
 

@@ -1,8 +1,12 @@
 <template>
   <section class="contries-section">
-    <h2>Select Your Country</h2>
-    <CountrySelect :valueCountry="countryselectnow" v-model="countryselectnow" />
-    <p>Selected Country: {{ countryselectnow }}</p>
+    <h2>Select Your Phone Code</h2>
+    <CountrySelect
+      :valueCountry="phoneCodeselectnow"
+      :isPhoneCode="true"
+      v-model="phoneCodeselectnow"
+    />
+    <p>Selected Phone Code: {{ phoneCodeselectnow }}</p>
   </section>
 </template>
 
@@ -13,10 +17,10 @@ import CountrySelect from './dropdownCountries.vue'
 export default defineComponent({
   components: { CountrySelect },
   setup() {
-    const countryselectnow = ref<string>('')
+    const phoneCodeselectnow = ref<string>('')
 
     return {
-      countryselectnow
+      phoneCodeselectnow
     }
   }
 })

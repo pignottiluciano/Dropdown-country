@@ -1,4 +1,4 @@
-export interface ContryType {
+export interface CountryType {
   countryName: string
   value: string
   phoneCode: string
@@ -6,7 +6,7 @@ export interface ContryType {
 }
 
 export const countriesCode = () => {
-  const countries: Array<ContryType> = [
+  const countries: Array<CountryType> = [
     { countryName: 'United States', phoneCode: '1', value: 'US' },
     { countryName: 'Canada', phoneCode: '1', value: 'CA' },
     { countryName: 'Afghanistan', phoneCode: '93', value: 'AF' },
