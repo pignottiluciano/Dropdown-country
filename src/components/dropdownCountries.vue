@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :ref="refDropdownSection" :id="refDropdownSection">
     <label v-if="!isPhoneCode" for="country-select">Select a Country:</label>
     <label v-if="isPhoneCode" for="country-select">Select a Phone Code:</label>
     <div class="dropdown" @click="toggleDropdown">
@@ -14,7 +14,7 @@
           {{ internalValue ? internalValue.countryName : 'Choose a country' }}
         </span>
         <span v-if="isPhoneCode">
-          {{ internalValue ? internalValue.phoneCode : 'Choose a country' }}
+          {{ internalValue ? '+' + internalValue.phoneCode : 'Choose a country' }}
         </span>
       </div>
       <ul v-show="dropdownOpen" class="dropdown-list">
@@ -24,7 +24,8 @@
           @click="selectCountry(country, $event)"
         >
           <img :src="country.image" :alt="country.countryName" class="flag-icon" />
-          {{ country.countryName }}
+          <span v-if="!isPhoneCode">{{ country.countryName }}</span>
+          <span v-if="isPhoneCode">{{ country.countryName }} +{{ country.phoneCode }}</span>
         </li>
       </ul>
     </div>
@@ -32,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 import { countriesCode, type CountryType } from '../lib/countriesCode'
 
 export default defineComponent({
@@ -49,9 +50,24 @@ export default defineComponent({
     const countries = ref<Array<CountryType>>(countriesCode())
     const internalValue = ref<CountryType | null>()
     const dropdownOpen = ref<boolean>(false)
+    const refDropdownSection = ref<string>('dropdown-country-code')
+    if (props.isPhoneCode) {
+      refDropdownSection.value = 'dropdown-prone-code'
+    }
 
     const toggleDropdown = () => {
       dropdownOpen.value = !dropdownOpen.value
+    }
+
+    function handleClickOutside(event: MouseEvent) {
+      const dropdownSection = document.getElementById(refDropdownSection.value)
+      if (
+        dropdownOpen.value &&
+        dropdownSection &&
+        !dropdownSection.contains(event.target as Node)
+      ) {
+        dropdownOpen.value = false
+      }
     }
 
     const selectCountry = (country: CountryType, event: MouseEvent) => {
@@ -85,13 +101,21 @@ export default defineComponent({
         immediate: true
       }
     )
+    onMounted(() => {
+      document.addEventListener('click', handleClickOutside)
+    })
+
+    onUnmounted(() => {
+      document.removeEventListener('click', handleClickOutside)
+    })
 
     return {
       countries,
       internalValue,
       dropdownOpen,
       toggleDropdown,
-      selectCountry
+      selectCountry,
+      refDropdownSection
     }
   }
 })
@@ -133,8 +157,6 @@ span {
   width: 100%;
   height: 100%;
   align-items: center;
-  /* justify-content: flex-start; */
-  /* gap: 8px; */
   font-size: 18px;
 }
 
